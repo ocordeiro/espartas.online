@@ -18,7 +18,7 @@
           <p>Inscrição gratuita para os primeiros 500 jogadores</p>
 
           <div class="col-md-12">
-            <form class="row">
+            <form @click="signUp" class="row">
               <div class="col-12 col-sm">
                 <input type="email" v-model="email" placeholder="E-mail" class="form-control" />
               </div>
@@ -29,8 +29,7 @@
 
               <div class="col-12 col-sm-auto pl-sm-0">
                 <input
-                  @click="signUp"
-                  type="button"
+                  type="submit"
                   name="commit"
                   value="Enviar"
                   class="btn btn-primary btn-block"
