@@ -37,7 +37,7 @@
               </div>
             </form>
 
-            <div v-if="countdown">
+            <div v-if="countdown" class="mt-2">
               <h5>Faltam</h5>
               <h5 class="timer">{{ countdown }}</h5>
             </div>
