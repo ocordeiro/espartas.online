@@ -18,7 +18,8 @@
         }
 
         .container {
-            color: #60626d !important;
+            color: #dadae0 !important;
+            font-weight: 100;
         }
     </style>
 </head>
@@ -26,26 +27,43 @@
 
 <body class="h-100 w-100 p-0 m-0 h-100 w-100 text-center bg-black text-light">
 
-    <div class="container h-100">
+    <div class="container h-100 ">
         <div class="row align-items-center h-100">
             <div class="col-8 mx-auto">
-                <div class="jumbotron bg-dark">
-                    <img src="images/logo.png">
+                <div class="jumbotron bg-dark b-0">
 
-                    <h3>
-                        1º Campeonato eSpartas
-                    </h3>
+                    <div class="mb-5">
+                        <img src="images/logo.png" class="">
+                        <h3>
+                            eSpartas
+                        </h3>
+                    </div>
 
-                    <h4>Free Fire Maranhão</h4>
+                    <h4>1º CAMPEONATO FREE FIRE MARANHÃO</h4>
 
-                    
+                    <p>Inscrição gratuita para os primeiros 1.000 jogadores</p>
 
-                    <form>
-                        <h5>Inscrição gratuita para os primeiros 1.000</h3>
-                            <input type="mail" placeholder="E-mail" />
-                            <input type="phone" placeholder="Telefone" />
-                            <button type="submit">Enviar</button>
-                    </form>
+
+
+                    <div class="col-md-12">
+                        <form class="row">
+                            <div class="col-12 col-sm pr-sm-0">
+                                <input type="text" name="name" id="name" placeholder="Nome do Jogador"
+                                    class="form-control">
+                            </div>
+
+                            <div class="col-12 col-sm">
+                                <input type="email" name="email" id="email" placeholder="E-mail" class="form-control">
+                            </div>
+
+                            <div class="col-12 col-sm-auto pl-sm-0">
+                                <input type="button" name="commit" value="Enviar" class="btn btn-primary btn-block">
+                            </div>
+
+                        </form>
+                    </div>
+
+
 
 
                 </div>
