@@ -47,7 +47,7 @@
 }
 
 .content {
-  background-image: url(http://themes.pixiesquad.com/pixiefreak/twisting-nether/wp-content/uploads/2018/10/background-copy.jpg);
+  background-image: url(../assets/img/background.png);
 }
 </style>
 
