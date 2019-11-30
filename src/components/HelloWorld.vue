@@ -122,7 +122,6 @@ export default {
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
         return `${days} dias, ${hours} horas, ${minutes} minutos ${seconds} segundos`
-
       }
     
   }
