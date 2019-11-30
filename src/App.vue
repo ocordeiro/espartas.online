@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style>
-html, body{ margin: 0}
+html, body{ margin: 0; background: #000;}
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -24,7 +24,6 @@ html, body{ margin: 0}
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background: #000;
   height: 100vh;
   width: 100vw;
 }
