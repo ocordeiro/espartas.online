@@ -19,36 +19,32 @@
 
           <div class="col-md-12">
             <form class="row">
-              <div class="col-12 col-sm pr-sm-0">
+              
+              <div class="col-12 col-sm">
                 <input
-                  type="text"
-                  name="name"
-                  id="name"
-                  placeholder="Nome do Jogador"
+                  type="email" v-model="email"
+                  placeholder="E-mail"
                   class="form-control"
                 />
               </div>
 
               <div class="col-12 col-sm">
                 <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="E-mail"
+                  type="email" v-model="password"
+                  placeholder="Senha"
                   class="form-control"
                 />
               </div>
 
+            
               <div class="col-12 col-sm-auto pl-sm-0">
-                <input type="button" name="commit" value="Enviar" class="btn btn-primary btn-block" />
+                <input @click="signUp" type="button" name="commit" value="Enviar" class="btn btn-primary btn-block" />
               </div>
             </form>
 
             <div v-if="countdown">
               <h5>Faltam</h5>
-              <h5 class="timer">
-                {{ countdown }}
-              </h5>
+              <h5 class="timer">{{ countdown }}</h5>
             </div>
           </div>
         </div>
@@ -70,12 +66,13 @@
 
 
 <script>
+import firebase from "firebase";
+
 export default {
   data() {
     return {
-      days: 0,
-      hours: 0,
-      minutes: 0,
+      email: '',
+      password: '',
       countdown: 0
     };
   },
@@ -87,43 +84,54 @@ export default {
   },
 
   methods: {
-  
-       getCountdown(endDate) {
-        let days, hours, minutes, seconds;
+    signUp: function() {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.email, this.password)
+        .then(
+          user => {
+            alert(user)
+          },
+          err => {
+            alert("Oops. " + err.message);
+          }
+        );
+    },
+    getCountdown: function(endDate) {
+      let days, hours, minutes, seconds;
 
-        endDate = new Date(endDate).getTime();
+      endDate = new Date(endDate).getTime();
 
-        if (isNaN(endDate)) {
-          return false;
-        }
-
-        let startDate = new Date().getTime();
-
-        let timeRemaining = parseInt((endDate - startDate) / 1000);
-
-        if (timeRemaining < 0) {
-          return false;
-        }
-
-        days = parseInt(timeRemaining / 86400);
-        timeRemaining = timeRemaining % 86400;
-
-        hours = parseInt(timeRemaining / 3600);
-        timeRemaining = timeRemaining % 3600;
-
-        minutes = parseInt(timeRemaining / 60);
-        timeRemaining = timeRemaining % 60;
-
-        seconds = parseInt(timeRemaining);
-        days = parseInt(days, 10);
-
-        hours = hours < 10 ? "0" + hours : hours;
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        return `${days} dias, ${hours} horas, ${minutes} minutos ${seconds} segundos`
+      if (isNaN(endDate)) {
+        return false;
       }
-    
+
+      let startDate = new Date().getTime();
+
+      let timeRemaining = parseInt((endDate - startDate) / 1000);
+
+      if (timeRemaining < 0) {
+        return false;
+      }
+
+      days = parseInt(timeRemaining / 86400);
+      timeRemaining = timeRemaining % 86400;
+
+      hours = parseInt(timeRemaining / 3600);
+      timeRemaining = timeRemaining % 3600;
+
+      minutes = parseInt(timeRemaining / 60);
+      timeRemaining = timeRemaining % 60;
+
+      seconds = parseInt(timeRemaining);
+      days = parseInt(days, 10);
+
+      hours = hours < 10 ? "0" + hours : hours;
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
+
+      return `${days} dias, ${hours} horas, ${minutes} minutos ${seconds} segundos`;
+    }
   }
 };
 </script>
