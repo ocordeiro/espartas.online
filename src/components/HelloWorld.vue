@@ -85,13 +85,13 @@ export default {
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
         .then(
-          user => {
+          () => {
             firebase
               .auth()
               .currentUser.sendEmailVerification()
               .then(
                 function() {
-                  alert(`Enviamos um email de confirmação para ${this.email}`)
+                  alert(`Enviamos um email de confirmação para ${this.email}`);
                 },
                 function(err) {
                   alert("Oops. " + err.message);
