@@ -24,7 +24,7 @@
               </div>
 
               <div class="col-12 col-sm">
-                <input type="email" v-model="password" placeholder="Senha" class="form-control" />
+                <input type="password" v-model="password" placeholder="Senha" class="form-control" />
               </div>
 
               <div class="col-12 col-sm-auto pl-sm-0">
@@ -91,14 +91,12 @@ export default {
               .currentUser.sendEmailVerification()
               .then(
                 function() {
-                  alert('enviamos email')
+                  alert(`Enviamos um email de confirmação para ${this.email}`)
                 },
-                function(error) {
-                  alert("Oops. " + error.message);
+                function(err) {
+                  alert("Oops. " + err.message);
                 }
               );
-
-            alert(user);
           },
           err => {
             alert("Oops. " + err.message);
