@@ -15,25 +15,17 @@
           <h3>Reserve sua vaga!!!</h3>
           <h4>1º CAMPEONATO eSpartas DE FREE FIRE DO MARANHÃO</h4>
 
-          <p>Inscrição gratuita para os primeiros 500 jogadores</p>
+          <p>Gratuito para os primeiros 500 jogadores</p>
 
           <div class="col-md-12">
             <form @submit.prevent="signUp" class="row">
-              <div class="col-12 col-sm">
-                <input type="email" v-model="email" placeholder="E-mail" class="form-control" />
-              </div>
 
               <div class="col-12 col-sm">
-                <input type="password" v-model="password" placeholder="Senha" class="form-control" />
+                <input type="email" v-model="email" placeholder="Informe seu e-mail" class="form-control" />
               </div>
 
               <div class="col-12 col-sm-auto pl-sm-0">
-                <input
-                  type="submit"
-                  name="commit"
-                  value="Enviar"
-                  class="btn btn-primary btn-block"
-                />
+                <input type="submit" name="commit" value="Garantir a vaga" class="btn btn-primary btn-block" />
               </div>
             </form>
 
@@ -66,8 +58,8 @@ import firebase from "firebase";
 export default {
   data() {
     return {
+      name: "",
       email: "",
-      password: "",
       countdown: 0
     };
   },
@@ -80,22 +72,29 @@ export default {
 
   methods: {
     signUp: function() {
+      const random_password =
+        Math.random()
+          .toString(36)
+          .substring(2, 15) +
+        Math.random()
+          .toString(36)
+          .substring(2, 15);
+
       firebase
         .auth()
-        .createUserWithEmailAndPassword(this.email, this.password)
+        .createUserWithEmailAndPassword(this.email, random_password)
         .then(
           () => {
-            firebase
-              .auth()
-              .currentUser.sendEmailVerification()
-              .then(
-                function() {
-                  alert(`Enviamos um email de confirmação para ${this.email}`);
-                },
-                function(err) {
-                  alert("Oops. " + err.message);
-                }
-              );
+            var user = firebase.auth().currentUser;
+
+            user.sendEmailVerification().then(
+              () => {
+                alert(`Enviamos um email de confirmação para ${this.email}`);
+              },
+              err => {
+                alert("Oops. " + err.message);
+              }
+            );
           },
           err => {
             alert("Oops. " + err.message);
@@ -135,7 +134,7 @@ export default {
       minutes = minutes < 10 ? "0" + minutes : minutes;
       seconds = seconds < 10 ? "0" + seconds : seconds;
 
-      return `${days} dias, ${hours} horas, ${minutes} minutos ${seconds} segundos`;
+      return `${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos`;
     }
   }
 };
