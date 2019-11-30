@@ -19,26 +19,22 @@
 
           <div class="col-md-12">
             <form class="row">
-              
               <div class="col-12 col-sm">
-                <input
-                  type="email" v-model="email"
-                  placeholder="E-mail"
-                  class="form-control"
-                />
+                <input type="email" v-model="email" placeholder="E-mail" class="form-control" />
               </div>
 
               <div class="col-12 col-sm">
-                <input
-                  type="email" v-model="password"
-                  placeholder="Senha"
-                  class="form-control"
-                />
+                <input type="email" v-model="password" placeholder="Senha" class="form-control" />
               </div>
 
-            
               <div class="col-12 col-sm-auto pl-sm-0">
-                <input @click="signUp" type="button" name="commit" value="Enviar" class="btn btn-primary btn-block" />
+                <input
+                  @click="signUp"
+                  type="button"
+                  name="commit"
+                  value="Enviar"
+                  class="btn btn-primary btn-block"
+                />
               </div>
             </form>
 
@@ -71,8 +67,8 @@ import firebase from "firebase";
 export default {
   data() {
     return {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
       countdown: 0
     };
   },
@@ -90,7 +86,19 @@ export default {
         .createUserWithEmailAndPassword(this.email, this.password)
         .then(
           user => {
-            alert(user)
+            firebase
+              .auth()
+              .currentUser.sendEmailVerification()
+              .then(
+                function() {
+                  alert('enviamos email')
+                },
+                function(error) {
+                  alert("Oops. " + error.message);
+                }
+              );
+
+            alert(user);
           },
           err => {
             alert("Oops. " + err.message);
