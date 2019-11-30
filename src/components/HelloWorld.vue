@@ -1,7 +1,7 @@
 <template>
   <div class="container h-100">
     <div class="row align-items-center h-100">
-      <div class="col-8 mx-auto">
+      <div class="col-sm-12 col-md-8 mx-auto">
         <div class="content p-4 bg-dark b-0">
           <div class="mb-4">
             <img width="200" src="../assets/img/espartas2.png" class />
@@ -18,7 +18,7 @@
           <p>Inscrição gratuita para os primeiros 500 jogadores</p>
 
           <div class="col-md-12">
-            <form @click="signUp" class="row">
+            <form @submit.prevent="signUp" class="row">
               <div class="col-12 col-sm">
                 <input type="email" v-model="email" placeholder="E-mail" class="form-control" />
               </div>
