@@ -47,7 +47,7 @@
 }
 
 .content {
-  background-image: url(../assets/img/background.png);
+  background-image: url(../assets/img/background.jpg);
 }
 </style>
 
