@@ -18,6 +18,8 @@
           <p>Gratuito para os primeiros 500 jogadores</p>
 
           <div class="col-md-12">
+
+  
             <form @submit.prevent="signUp" class="row">
 
               <div class="col-12 col-sm">
@@ -29,9 +31,12 @@
               </div>
             </form>
 
-            <div v-if="countdown" class="mt-2">
+            <iframe  class="mt-4" src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FeSpartasApp%2F&width=157&layout=button&action=like&size=small&show_faces=true&share=true&height=65&appId=717595855351504" width="157" height="65" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>    
+
+            <div v-if="countdown" class="mt-1">
               <h5>Faltam</h5>
               <h5 class="timer">{{ countdown }}</h5>
+              
             </div>
           </div>
         </div>
